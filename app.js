@@ -16,9 +16,19 @@ courseForm.addEventListener('submit', async (e) => {
     e.preventDefault();
     
     const formData = new FormData();
-    formData.append('title', document.getElementById('courseTitle').value);
-    formData.append('description', document.getElementById('courseDesc').value);
-    formData.append('video', document.getElementById('courseVideo').files[0]);
+    const title = document.getElementById('courseTitle').value;
+    const description = document.getElementById('courseDesc').value;
+    const video = document.getElementById('courseVideo').files[0];
+
+    // Client-side validation
+    if (!title || !description || !video) {
+        alert('Please fill in all fields and select a video');
+        return;
+    }
+
+    formData.append('title', title);
+    formData.append('description', description);
+    formData.append('video', video);
 
     try {
         const response = await fetch('/api/courses', {
@@ -26,13 +36,17 @@ courseForm.addEventListener('submit', async (e) => {
             body: formData
         });
         
-        if (response.ok) {
-            modal.style.display = 'none';
-            courseForm.reset();
-            loadCourses(); // Refresh course list
+        if (!response.ok) {
+            const error = await response.json();
+            throw new Error(error.message || 'Upload failed');
         }
+
+        modal.style.display = 'none';
+        courseForm.reset();
+        await loadCourses();
     } catch (error) {
         console.error('Error:', error);
+        alert(`Failed to upload course: ${error.message}`);
     }
 });
 
