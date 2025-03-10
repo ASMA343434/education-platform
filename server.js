@@ -73,13 +73,16 @@ app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
-// Export for Vercel
+// Error handling
+app.use((err, req, res, next) => {
+    console.error(err);
+    res.status(500).json({ error: 'Internal Server Error' });
+});
+
 module.exports = app;
 
-// Start server if not in Vercel
+// Start server if not in production
 if (process.env.NODE_ENV !== 'production') {
     const port = process.env.PORT || 3000;
-    app.listen(port, () => {
-        console.log(`Server running on port ${port}`);
-    });
+    app.listen(port, () => console.log(`Server running on port ${port}`));
 }
