@@ -2,13 +2,14 @@ require('dotenv').config();
 const express = require('express');
 const cloudinary = require('cloudinary').v2;
 const multer = require('multer');
+const path = require('path');
 
 // Configure multer for memory storage
 const storage = multer.memoryStorage();
 const upload = multer({ storage: storage });
 
 const app = express();
-app.use(express.static('public'));
+app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.json());
 
 // Configure cloudinary
@@ -63,6 +64,14 @@ app.post('/api/courses', upload.single('video'), asyncHandler(async (req, res) =
     // Store course data (implement your database logic here)
     res.status(201).json(course);
 }));
+
+// API routes
+app.use('/api', require('./routes/api'));
+
+// Serve index.html for all other routes
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'index.html'));
+});
 
 // Export for Vercel
 module.exports = app;
