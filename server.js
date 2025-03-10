@@ -12,6 +12,12 @@ const app = express();
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.json());
 
+// Add request logging
+app.use((req, res, next) => {
+    console.log(`${new Date().toISOString()} - ${req.method} ${req.path}`);
+    next();
+});
+
 // Configure cloudinary
 cloudinary.config({
     cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
@@ -19,18 +25,23 @@ cloudinary.config({
     api_secret: process.env.CLOUDINARY_API_SECRET
 });
 
-// Error handling middleware
+// Error handling middleware with detailed logging
 app.use((err, req, res, next) => {
-    console.error('Error details:', {
+    const errorDetails = {
         message: err.message,
         stack: err.stack,
-        timestamp: new Date().toISOString()
-    });
-    
+        timestamp: new Date().toISOString(),
+        path: req.path,
+        method: req.method,
+        requestId: `${Date.now()}-${Math.random().toString(36).substr(2, 9)}`
+    };
+
+    console.error('Error details:', errorDetails);
+
     res.status(500).json({
         error: 'Internal Server Error',
-        message: err.message,
-        requestId: `${Date.now()}-${Math.random().toString(36).substr(2, 9)}`
+        requestId: errorDetails.requestId,
+        message: process.env.NODE_ENV === 'development' ? err.message : 'An error occurred'
     });
 });
 
