@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=, initial-scale=1.0">
+    <title>Document</title>
+    <!--font asesome-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!--css-->
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600&display=swap" rel="stylesheet">
+    <script>
+        // التحقق من تسجيل الدخول قبل تحميل الصفحة
+        if (!localStorage.getItem('token')) {
+            window.location.href = 'login.html';
+        }
+    </script>
+</head>
+<body>
+    <div class="theme-toggle">
+        <i class="fas fa-moon"></i>
+    </div>
+    <div class="toggle-btn">
+        <i class="fas fa-bars"></i>
+    </div>
+
+    <header>
+        <nav>
+            <a href="#curriculum"><i class="fa fa-book"></i><span>المنهج</span></a>
+            <a href="#courses"><i class="fa fa-graduation-cap"></i><span>الكورسات</span></a>
+            <a href="#ask"><i class="fa fa-question-circle"></i><span>أسأل معلم</span></a>
+            <a href="#profile"><i class="fa fa-user"></i><span>أدارة الحساب</span></a>
+            <a href="#contact"><i class="fa fa-phone"></i><span>تواصل معنا</span></a>
+            <a href="#settings"><i class="fa fa-gear"></i><span>الأعدادات</span></a>
+        </nav>
+    </header>
+
+    <!-- إضافة قسم المنهج -->
+    <div class="curriculum-section" id="curriculum">
+        <div class="search-grade-container">
+            <div class="search-box">
+                <input type="text" placeholder="ابحث عن الدرس...">
+                <i class="fas fa-search"></i>
+            </div>
+            <div class="grade-selector">
+                <select id="grade-select">
+                    <option value="" disabled selected>اختر المرحلة الدراسية</option>
+                    <option value="6">الصف السادس الابتدائي</option>
+                    <option value="7">الصف الأول المتوسط</option>
+                    <option value="8">الصف الثاني المتوسط</option>
+                    <option value="9">الصف الثالث المتوسط</option>
+                    <option value="10">الصف الأول الثانوي</option>
+                    <option value="11">الصف الثاني الثانوي</option>
+                    <option value="12">الصف الثالث الثانوي</option>
+                </select>
+            </div>
+        </div>
+        <div class="lessons-container">
+            <div class="lesson-card" data-grade="12">
+                <div class="lesson-info">
+                    <div class="lesson-status">
+                        <h3>الجبر والمعادلات</h3>
+                        <span class="completion-badge"><i class="fas fa-check-circle"></i></span>
+                    </div>
+                    <p class="grade">الصف: الثالث الثانوي</p>
+                    <p class="teacher">المعلم: عبدالله محمد</p>
+                    <button class="watch-btn" data-video="VIDEO_ID">مشاهدة</button>
+                </div>
+            </div>
+            
+            <div class="lesson-card" data-grade="11">
+                <div class="lesson-info">
+                    <div class="lesson-status">
+                        <h3>الهندسة التحليلية</h3>
+                        <span class="completion-badge"><i class="fas fa-check-circle"></i></span>
+                    </div>
+                    <p class="grade">الصف: الثاني الثانوي</p>
+                    <p class="teacher">المعلم: محمد أحمد</p>
+                    <button class="watch-btn" data-video="VIDEO_ID_2">مشاهدة</button>
+                </div>
+            </div>
+
+            <div class="lesson-card" data-grade="10">
+                <div class="lesson-info">
+                    <div class="lesson-status">
+                        <h3>حساب المثلثات</h3>
+                        <span class="completion-badge"><i class="fas fa-check-circle"></i></span>
+                    </div>
+                    <p class="grade">الصف: الأول الثانوي</p>
+                    <p class="teacher">المعلم: خالد العمري</p>
+                    <button class="watch-btn" data-video="VIDEO_ID_3">مشاهدة</button>
+                </div>
+            </div>
+
+            <div class="lesson-card" data-grade="9">
+                <div class="lesson-info">
+                    <div class="lesson-status">
+                        <h3>المعادلات الخطية</h3>
+                        <span class="completion-badge"><i class="fas fa-check-circle"></i></span>
+                    </div>
+                    <p class="grade">الصف: الثالث المتوسط</p>
+                    <p class="teacher">المعلم: سعد الحربي</p>
+                    <button class="watch-btn" data-video="VIDEO_ID_4">مشاهدة</button>
+                </div>
+            </div>
+
+            <div class="lesson-card" data-grade="8">
+                <div class="lesson-info">
+                    <div class="lesson-status">
+                        <h3>النسبة والتناسب</h3>
+                        <span class="completion-badge"><i class="fas fa-check-circle"></i></span>
+                    </div>
+                    <p class="grade">الصف: الثاني المتوسط</p>
+                    <p class="teacher">المعلم: فهد السالم</p>
+                    <button class="watch-btn" data-video="VIDEO_ID_5">مشاهدة</button>
+                </div>
+            </div>
+
+            <div class="lesson-card" data-grade="7">
+                <div class="lesson-info">
+                    <div class="lesson-status">
+                        <h3>الأعداد الصحيحة</h3>
+                        <span class="completion-badge"><i class="fas fa-check-circle"></i></span>
+                    </div>
+                    <p class="grade">الصف: الأول المتوسط</p>
+                    <p class="teacher">المعلم: عمر الراشد</p>
+                    <button class="watch-btn" data-video="VIDEO_ID_6">مشاهدة</button>
+                </div>
+            </div>
+
+            <div class="lesson-card" data-grade="6">
+                <div class="lesson-info">
+                    <div class="lesson-status">
+                        <h3>الكسور العشرية</h3>
+                        <span class="completion-badge"><i class="fas fa-check-circle"></i></span>
+                    </div>
+                    <p class="grade">الصف: السادس الابتدائي</p>
+                    <p class="teacher">المعلم: ناصر القحطاني</p>
+                    <button class="watch-btn" data-video="VIDEO_ID_7">مشاهدة</button>
+                </div>
+            </div>
+
+            <div class="lesson-card" data-grade="12">
+                <div class="lesson-info">
+                    <div class="lesson-status">
+                        <h3>التفاضل والتكامل</h3>
+                        <span class="completion-badge"><i class="fas fa-check-circle"></i></span>
+                    </div>
+                    <p class="grade">الصف: الثالث الثانوي</p>
+                    <p class="teacher">المعلم: عبدالله محمد</p>
+                    <button class="watch-btn" data-video="VIDEO_ID_8">مشاهدة</button>
+                </div>
+            </div>
+
+            <div class="lesson-card" data-grade="11">
+                <div class="lesson-info">
+                    <div class="lesson-status">
+                        <h3>الإحصاء والاحتمالات</h3>
+                        <span class="completion-badge"><i class="fas fa-check-circle"></i></span>
+                    </div>
+                    <p class="grade">الصف: الثاني الثانوي</p>
+                    <p class="teacher">المعلم: محمد أحمد</p>
+                    <button class="watch-btn" data-video="VIDEO_ID_9">مشاهدة</button>
+                </div>
+            </div>
+
+            <div class="lesson-card" data-grade="10">
+                <div class="lesson-info">
+                    <div class="lesson-status">
+                        <h3>الدوال والمتتاليات</h3>
+                        <span class="completion-badge"><i class="fas fa-check-circle"></i></span>
+                    </div>
+                    <p class="grade">الصف: الأول الثانوي</p>
+                    <p class="teacher">المعلم: خالد العمري</p>
+                    <button class="watch-btn" data-video="VIDEO_ID_10">مشاهدة</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal for lesson content -->
+    <div id="lesson-modal" class="modal">
+        <div class="modal-content lesson-modal-content">
+            <span class="close">&times;</span>
+            <div class="lesson-tabs">
+                <button class="tab-btn active" data-tab="video">المشاهدة</button>
+                <button class="tab-btn" data-tab="exercises">التدريبات</button>
+                <button class="tab-btn" data-tab="summary">الملخص</button>
+            </div>
+            <div class="tab-content">
+                <div id="video" class="tab-pane active">
+                    <div class="video-container">
+                        <!-- YouTube video will be inserted here -->
+                    </div>
+                </div>
+                <div id="exercises" class="tab-pane">
+                    <h3>التدريبات</h3>
+                    <!-- تدريبات الدرس -->
+                </div>
+                <div id="summary" class="tab-pane">
+                    <h3>ملخص الدرس</h3>
+                    <!-- ملخص الدرس -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- إضافة مودال للمساعدة -->
+    <div id="help-modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>دليل الموقع</h2>
+            <div class="steps">
+                <div class="step">
+                    <h3>1. المنهج</h3>
+                    <p>استعرض المنهج الدراسي الكامل</p>
+                </div>
+                <div class="step">
+                    <h3>2. الكورسات</h3>
+                    <p>تصفح الكورسات المتاحة</p>
+                </div>
+                <div class="step">
+                    <h3>3. أسأل معلم</h3>
+                    <p>تواصل مع المعلمين مباشرة</p>
+                </div>
+                <!-- إضافة باقي الخطوات -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Add this modal for settings -->
+    <div id="settings-modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>إعدادات الحساب</h2>
+            <form id="settings-form">
+                <div class="input-group">
+                    <i class="fas fa-user"></i>
+                    <input type="text" name="name" placeholder="الاسم الكامل">
+                </div>
+                <div class="input-group">
+                    <i class="fas fa-graduation-cap"></i>
+                    <select name="grade" id="settings-grade">
+                        <option value="" disabled>اختر المرحلة الدراسية</option>
+                        <option value="6">الصف السادس الابتدائي</option>
+                        <option value="7">الصف الأول المتوسط</option>
+                        <option value="8">الصف الثاني المتوسط</option>
+                        <option value="9">الصف الثالث المتوسط</option>
+                        <option value="10">الصف الأول الثانوي</option>
+                        <option value="11">الصف الثاني الثانوي</option>
+                        <option value="12">الصف الثالث الثانوي</option>
+                    </select>
+                </div>
+                <div class="input-group">
+                    <i class="fas fa-lock"></i>
+                    <input type="password" name="currentPassword" placeholder="كلمة المرور الحالية">
+                </div>
+                <div class="input-group">
+                    <i class="fas fa-key"></i>
+                    <input type="password" name="newPassword" placeholder="كلمة المرور الجديدة">
+                </div>
+                <div class="input-group">
+                    <i class="fas fa-check"></i>
+                    <input type="password" name="confirmPassword" placeholder="تأكيد كلمة المرور الجديدة">
+                </div>
+                <button type="submit">حفظ التغييرات</button>
+            </form>
+            <button id="logout-btn" class="danger-btn">تسجيل الخروج</button>
+        </div>
+    </div>
+    
+    <style>
+        .lesson-status {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .completion-badge {
+            color: #4CAF50;
+            font-size: 1.2em;
+            display: none;
+        }
+        
+        .lesson-card.completed .completion-badge {
+            display: block;
+        }
+        
+        .lesson-card.completed {
+            border: 2px solid #4CAF50;
+        }
+    </style>
+
+    <script>
+        // التحقق من تسجيل الدخول قبل تحميل الصفحة
+        if (!localStorage.getItem('token')) {
+            window.location.href = 'login.html';
+        }
+
+        // تحميل الدروس المكتملة عند تحميل الصفحة
+        document.addEventListener('DOMContentLoaded', function() {
+            loadCompletedLessons();
+        });
+
+        function loadCompletedLessons() {
+            const userId = localStorage.getItem('token');
+            const completedLessons = JSON.parse(localStorage.getItem(`completedLessons_${userId}`)) || [];
+            
+            completedLessons.forEach(lessonId => {
+                const lessonCard = document.querySelector(`.lesson-card[data-video="${lessonId}"]`);
+                if (lessonCard) {
+                    lessonCard.classList.add('completed');
+                }
+            });
+        }
+
+        function markLessonAsCompleted(videoId) {
+            const userId = localStorage.getItem('token');
+            const completedLessons = JSON.parse(localStorage.getItem(`completedLessons_${userId}`)) || [];
+            
+            if (!completedLessons.includes(videoId)) {
+                completedLessons.push(videoId);
+                localStorage.setItem(`completedLessons_${userId}`, JSON.stringify(completedLessons));
+            }
+            
+            const lessonCard = document.querySelector(`.lesson-card[data-video="${videoId}"]`);
+            if (lessonCard) {
+                lessonCard.classList.add('completed');
+                // لا نقوم بإخفاء الدرس، فقط نضيف علامة الإكمال
+            }
+        }
+
+        // تعديل مستمع الأحداث لأزرار المشاهدة
+        document.querySelectorAll('.watch-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const videoId = this.getAttribute('data-video');
+                // افتح المودال وشغل الفيديو
+                // ...
+                // عند إكمال الفيديو
+                markLessonAsCompleted(videoId);
+            });
+        });
+    </script>
+</body>
+</html>
